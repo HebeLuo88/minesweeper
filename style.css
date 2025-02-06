@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.controls {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 20px;
+}
+
+#game {
+    overflow: auto;
+    max-height: 90vh;
+}
+
+.grid {
+    display: grid;
+    gap: 1px;
+    background: #999;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    background: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.cell.revealed {
+    background: #fff;
+}
+
+.cell.mine {
+    background: #f00;
+}
+
+.cell.flagged::after {
+    content: "🚩";
+} 

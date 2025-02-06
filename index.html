@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>网页版扫雷</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="controls">
+        <div>
+            行数：<input type="range" id="rows" min="5" max="50" value="20">
+            <span id="rowsValue">10</span>
+        </div>
+        <div>
+            列数：<input type="range" id="cols" min="5" max="50" value="20">
+            <span id="colsValue">10</span>
+        </div>
+        <div>
+            地雷数：<input type="range" id="mines" min="1" max="249" value="40">
+            <span id="minesValue">10</span>
+        </div>
+        <button onclick="newGame()">新游戏</button>
+    </div>
+    <div id="game"></div>
+    <script src="script.js"></script>
+</body>
+</html> 
