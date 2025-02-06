@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>大家一起玩扫雷</h1>
     <div class="controls">
         <div>
             行数：<input type="range" id="rows" min="5" max="50" value="20">
@@ -21,6 +22,15 @@
         <button onclick="newGame()">新游戏</button>
     </div>
     <div id="game"></div>
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <p id="modalMessage"></p>
+            <button onclick="handleRestart()">再来一局</button>
+            <button onclick="handleShare()">分享</button>
+            <button onclick="handleClose()">关闭</button>
+        </div>
+    </div>
+    <div id="copySuccess" class="copy-success">链接已复制到剪贴板！</div>
     <script src="script.js"></script>
 </body>
 </html> 
