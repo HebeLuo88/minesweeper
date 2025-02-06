@@ -1,6 +1,8 @@
 let rows = 20, cols = 20, mines = 40;
 let grid = [];
 let gameOver = false;
+let modal = document.getElementById('customModal');
+let modalMessage = document.getElementById('modalMessage');
 
 function initControls() {
     const rowsInput = document.getElementById('rows');
@@ -129,11 +131,12 @@ function handleLeftClick(e) {
     if (grid[row][col].isMine) {
         gameOver = true;
         revealAll();
-        alert('游戏结束！');
+        showLoseModal();
         return;
     }
     
     reveal(row, col);
+    checkWin();
 }
 
 function handleRightClick(e) {
@@ -178,6 +181,55 @@ function revealAll() {
             }
         }
     }
+}
+
+function checkWin() {
+    let correctFlags = 0;
+    let revealedSafe = 0;
+    const totalSafe = rows * cols - mines;
+
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < cols; j++) {
+            if (grid[i][j].isMine && grid[i][j].flagged) {
+                correctFlags++;
+            }
+            if (!grid[i][j].isMine && grid[i][j].revealed) {
+                revealedSafe++;
+            }
+        }
+    }
+
+    if (correctFlags === mines && revealedSafe === totalSafe) {
+        gameOver = true;
+        showWinModal();
+    }
+}
+
+function showWinModal() {
+    modalMessage.textContent = "恭喜你，扫雷成功！";
+    modal.style.display = 'flex';
+}
+
+function showLoseModal() {
+    modalMessage.textContent = "嘣~ 下次小心一点";
+    modal.style.display = 'flex';
+}
+
+function handleRestart() {
+    modal.style.display = 'none';
+    newGame();
+}
+
+function handleShare() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+        const success = document.getElementById('copySuccess');
+        success.style.display = 'block';
+        setTimeout(() => success.style.display = 'none', 2000);
+    });
+}
+
+function handleClose() {
+    modal.style.display = 'none';
 }
 
 // 初始化
